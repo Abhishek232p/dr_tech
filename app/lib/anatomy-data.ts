@@ -12,7 +12,11 @@ export type OrganId =
   | "eyeball"
   | "intestine"
   | "pancreas"
-  | "skin";
+  | "skin"
+  | "skeletal"
+  | "muscular"
+  | "cardiovascular"
+  | "nervous";
 
 export type HotspotStructure = {
   id: string;
@@ -158,6 +162,50 @@ export const organStructures: OrganStructure[] = [
       { id: "dermis", ta: "Dermis", position: [0.29, 0.05, 1.4], color: "#f2a33b" },
       { id: "hypodermis", ta: "Tela subcutanea", position: [-0.39, -1.15, 1.4], color: "#6393d8" },
       { id: "follicle", ta: "Folliculus pili", position: [0.89, -0.44, 1.4], color: "#d89bc4" },
+    ],
+  },
+  {
+    id: "skeletal",
+    model: "/models/skeletal.glb",
+    icon: "🦴",
+    accent: "#cccccc",
+    illustrated: true,
+    scientificName: "Systema skeletale",
+    hotspots: [
+      { id: "skull", ta: "Cranium", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
+    ],
+  },
+  {
+    id: "muscular",
+    model: "/models/muscular.glb",
+    icon: "💪",
+    accent: "#e53935",
+    illustrated: true,
+    scientificName: "Systema musculare",
+    hotspots: [
+      { id: "muscle", ta: "Musculus", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
+    ],
+  },
+  {
+    id: "cardiovascular",
+    model: "/models/cardiovascular.glb",
+    icon: "🩸",
+    accent: "#d32f2f",
+    illustrated: true,
+    scientificName: "Systema cardiovasculare",
+    hotspots: [
+      { id: "vessel", ta: "Vas sanguineum", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
+    ],
+  },
+  {
+    id: "nervous",
+    model: "/models/nervous.glb",
+    icon: "⚡",
+    accent: "#fbc02d",
+    illustrated: true,
+    scientificName: "Systema nervosum",
+    hotspots: [
+      { id: "nerve", ta: "Nervus", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
     ],
   },
 ];

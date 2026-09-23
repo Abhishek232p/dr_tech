@@ -247,10 +247,12 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
   }, []);
 
   useEffect(() => {
-    viewerRef.current?.setOrgan(organ.model, organ.hotspots, organ.accent).catch(() => {
-      setLoading(false);
-      setProgress(0);
-    });
+    if (organ.has3D) {
+      viewerRef.current?.setOrgan(organ.model, organ.hotspots, organ.accent).catch(() => {
+        setLoading(false);
+        setProgress(0);
+      });
+    }
   }, [organ]);
 
   // A spinning specimen makes "click the mitral valve" a game of chance, so the
@@ -268,7 +270,7 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
 
   const handleTool = (tool: string) => {
     const viewer = viewerRef.current;
-    if (!viewer) return;
+    if (!viewer || !organ.has3D) return;
     if (tool === "rotate") onAutoRotate(!autoRotate);
     if (tool === "zoom") viewer.zoom(-1);
     if (tool === "isolate") setActiveTool(viewer.toggleIsolate() ? tool : null);
@@ -294,8 +296,14 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
   return (
     <section className="viewer-shell" aria-label={format(t.viewer.title, { organ: organ.name })}>
       <div className="viewer-glow" style={{ "--organ-accent": organ.accent } as React.CSSProperties} />
-      <div ref={mountRef} className="three-mount" />
+      <div ref={mountRef} className="three-mount" style={{ display: organ.has3D ? 'block' : 'none' }} />
+      {!organ.has3D && (
+        <div className="fallback-2d-mount" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', zIndex: 1 }}>
+          <img src={`/anatomy/${organ.id}/organ.webp`} alt={organ.name} style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))' }} />
+        </div>
+      )}
 
+      {organ.has3D && (
       <div className="viewer-tools" aria-label={t.tools.label}>
         {tools.map(({ id, label, icon: Icon }) => (
           <button
@@ -311,15 +319,16 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
           </button>
         ))}
       </div>
+      )}
 
-      {!quizActive && (
+      {organ.has3D && !quizActive && (
       <aside className="tip-note" aria-label={t.viewer.tip}>
         <span><Sparkles size={15} /> {t.viewer.tip}</span>
         <p>{t.viewer.tipDrag}<br />{t.viewer.tipScroll}<br />{t.viewer.tipClick}</p>
       </aside>
       )}
 
-      {selected && !quizActive && (
+      {organ.has3D && selected && !quizActive && (
         <div className="hotspot-callout" ref={calloutRef} data-side="right">
           <div className="callout-body" style={{ "--hotspot-color": selected.color } as React.CSSProperties}>
             <button className="callout-close" type="button" onClick={() => viewerRef.current?.clearSelection()} aria-label={t.modal.close}>
@@ -331,14 +340,15 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
         </div>
       )}
 
-      {/* Screen-reader equivalent of the dots, which live in the canvas. */}
+      {organ.has3D && (
       <ul className="hotspot-index" aria-label={t.viewer.structures}>
         {organ.hotspots.map((hotspot) => (
           <li key={hotspot.id}>{hotspot.label}: {hotspot.detail}</li>
         ))}
       </ul>
+      )}
 
-      {quizActive && (
+      {organ.has3D && quizActive && (
         <LabelQuiz
           key={organ.id}
           hotspots={organ.hotspots}
@@ -373,7 +383,7 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
         </div>
       )}
 
-      {loading && slowLoad && (
+      {organ.has3D && loading && slowLoad && (
         <div className="model-loader" role="status" aria-live="polite">
           <div className="loader-orbit"><Maximize2 size={20} /></div>
           <strong>{format(t.viewer.loading, { organ: organ.name })}</strong>
@@ -381,7 +391,7 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
         </div>
       )}
 
-      {!quizActive && (
+      {organ.has3D && !quizActive && (
       <button className="auto-rotate" type="button" onClick={() => onAutoRotate(!autoRotate)} aria-pressed={autoRotate}>
         <RotateCcw size={14} /> {t.viewer.autoRotate}
         <span className={`switch ${autoRotate ? "on" : ""}`}><i /></span>

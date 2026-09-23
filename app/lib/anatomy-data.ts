@@ -33,6 +33,8 @@ export type OrganStructure = {
   accent: string;
   /** Whether `/anatomy/<id>/*.webp` illustrations exist. */
   illustrated: boolean;
+  /** Whether a true 3D model exists for this structure. If false, falls back to 2D image. */
+  has3D: boolean;
   /** Latin binomial — intentionally identical in every locale. */
   scientificName: string;
   hotspots: HotspotStructure[];
@@ -45,6 +47,7 @@ export const organStructures: OrganStructure[] = [
     icon: "🦴",
     accent: "#cccccc",
     illustrated: true,
+    has3D: false,
     scientificName: "Systema skeletale",
     hotspots: [
       { id: "skull", ta: "Cranium", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
@@ -56,6 +59,7 @@ export const organStructures: OrganStructure[] = [
     icon: "💪",
     accent: "#e53935",
     illustrated: true,
+    has3D: false,
     scientificName: "Systema musculare",
     hotspots: [
       { id: "muscle", ta: "Musculus", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
@@ -67,6 +71,7 @@ export const organStructures: OrganStructure[] = [
     icon: "🩸",
     accent: "#d32f2f",
     illustrated: true,
+    has3D: false,
     scientificName: "Systema cardiovasculare",
     hotspots: [
       { id: "vessel", ta: "Vas sanguineum", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
@@ -78,6 +83,7 @@ export const organStructures: OrganStructure[] = [
     icon: "⚡",
     accent: "#fbc02d",
     illustrated: true,
+    has3D: false,
     scientificName: "Systema nervosum",
     hotspots: [
       { id: "nerve", ta: "Nervus", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },
@@ -89,6 +95,7 @@ export const organStructures: OrganStructure[] = [
     icon: "◉",
     accent: "#c58696",
     illustrated: true,
+    has3D: true,
     scientificName: "Encephalon",
     hotspots: [
       { id: "frontal", ta: "Lobus frontalis", position: [-0.7, 0.65, 0.8], color: "#ee7c6a" },
@@ -103,6 +110,7 @@ export const organStructures: OrganStructure[] = [
     icon: "⊙",
     accent: "#7294b9",
     illustrated: true,
+    has3D: true,
     scientificName: "Oculus",
     hotspots: [
       { id: "cornea", ta: "Cornea", position: [-0.94, 0.05, 1.47], color: "#6393d8" },
@@ -116,6 +124,7 @@ export const organStructures: OrganStructure[] = [
     icon: "♥",
     accent: "#ee7c6a",
     illustrated: true,
+    has3D: true,
     scientificName: "Cor",
     hotspots: [
       { id: "aorta", ta: "Aorta", position: [-0.35, 1.65, 0.55], color: "#ee7c6a" },
@@ -132,6 +141,7 @@ export const organStructures: OrganStructure[] = [
     icon: "◍",
     accent: "#dd8f8b",
     illustrated: true,
+    has3D: true,
     scientificName: "Pulmones",
     hotspots: [
       { id: "trachea", ta: "Trachea", position: [0, 1.6, 0.2], color: "#6393d8" },
@@ -147,6 +157,7 @@ export const organStructures: OrganStructure[] = [
     icon: "≈",
     accent: "#b86858",
     illustrated: true,
+    has3D: true,
     scientificName: "Hepar",
     hotspots: [
       { id: "right-lobe", ta: "Lobus hepatis dexter", position: [-0.75, 0.35, 0.75], color: "#ee7c6a" },
@@ -160,6 +171,7 @@ export const organStructures: OrganStructure[] = [
     icon: "§",
     accent: "#d78b77",
     illustrated: true,
+    has3D: true,
     scientificName: "Intestinum",
     hotspots: [
       { id: "duodenum", ta: "Duodenum", position: [0.6, 0.8, 0.75], color: "#f2a33b" },
@@ -173,6 +185,7 @@ export const organStructures: OrganStructure[] = [
     icon: "◈",
     accent: "#c69a5e",
     illustrated: true,
+    has3D: true,
     scientificName: "Pancreas",
     hotspots: [
       { id: "head", ta: "Caput pancreatis", position: [-1.32, -0.36, 0.55], color: "#ee7c6a" },
@@ -187,6 +200,7 @@ export const organStructures: OrganStructure[] = [
     icon: "∞",
     accent: "#c96963",
     illustrated: true,
+    has3D: true,
     scientificName: "Renes",
     hotspots: [
       { id: "cortex", ta: "Cortex renalis", position: [-0.9, 0.55, 0.7], color: "#ee7c6a" },
@@ -200,6 +214,7 @@ export const organStructures: OrganStructure[] = [
     icon: "▦",
     accent: "#c99277",
     illustrated: true,
+    has3D: true,
     scientificName: "Integumentum",
     hotspots: [
       { id: "epidermis", ta: "Epidermis", position: [-0.05, 0.88, 1.4], color: "#ee7c6a" },

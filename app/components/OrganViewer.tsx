@@ -233,10 +233,15 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
       viewer.setAutoRotate(autoRotateRef.current);
       viewer.setAuthoring(authoringRef.current);
       const current = organRef.current;
-      viewer.setOrgan(current.model, current.hotspots, current.accent).catch(() => {
+      if (current.has3D) {
+        viewer.setOrgan(current.model, current.hotspots, current.accent).catch(() => {
+          setLoading(false);
+          setProgress(0);
+        });
+      } else {
         setLoading(false);
         setProgress(0);
-      });
+      }
     });
 
     return () => {
@@ -252,6 +257,8 @@ export function OrganViewer({ organ, t, autoRotate, onAutoRotate, compare, onCom
         setLoading(false);
         setProgress(0);
       });
+    } else {
+      viewerRef.current?.clearOrgan();
     }
   }, [organ]);
 

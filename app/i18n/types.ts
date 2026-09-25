@@ -18,6 +18,8 @@ export type OrganContent = {
   tissue: string;
   comparison: string;
   conditions: string[];
+  quizQuestion?: string;
+  quizAnswer?: string;
   /** Keyed by hotspot id — the Terminologia Anatomica term is the anchor. */
   hotspots: Record<string, { label: string; detail: string }>;
 };

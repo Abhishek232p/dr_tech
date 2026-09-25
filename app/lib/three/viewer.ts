@@ -265,6 +265,7 @@ export class AnatomyViewer {
         onUpdate: () => (this.dirty = true),
       });
       this.assets.release(outgoing);
+      this.scene.remove(outgoing.pivot);
       this.organ = null;
       this.dirty = true;
     }
@@ -308,6 +309,21 @@ export class AnatomyViewer {
       .to(organ.pivot.scale, { x: 1, y: 1, z: 1, duration: 0.9, ease: "back.out(1.25)" }, 0)
       .to(organ.pivot.position, { z: 0, duration: 0.85, ease: "power3.out" }, 0)
       .to(this.camera.position, { z: 8.2, duration: 0.9, ease: "power2.out" }, 0.08);
+  }
+
+  clearOrgan() {
+    this.select(null);
+    const outgoing = this.organ;
+    if (outgoing) {
+      this.fadeTween?.kill();
+      this.fadeTween = null;
+      this.setDepthPrepass(outgoing, false);
+      this.hotspots.clear();
+      this.assets.release(outgoing);
+      this.scene.remove(outgoing.pivot);
+      this.organ = null;
+      this.dirty = true;
+    }
   }
 
   private materials(organ: LoadedOrgan) {

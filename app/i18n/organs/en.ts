@@ -223,6 +223,8 @@ export const organs: OrganContentDictionary = {
     funFact: "An adult has 206 bones, while a baby is born with around 300.",
     tissue: "Bone and cartilage",
     comparison: "Skeletal vs. Muscular",
+    quizQuestion: "What is the longest bone in the human body?",
+    quizAnswer: "The femur (thigh bone).",
     conditions: ["Osteoporosis", "Fracture", "Arthritis", "Scoliosis", "Osteoarthritis", "Bone cancer", "Osteogenesis imperfecta", "Rickets"],
     hotspots: {
       "skull": { label: "Skull", detail: "Protects the brain" },
@@ -243,6 +245,8 @@ export const organs: OrganContentDictionary = {
     funFact: "The strongest muscle relative to its size is the masseter (jaw muscle).",
     tissue: "Muscle tissue",
     comparison: "Muscular vs. Skeletal",
+    quizQuestion: "Which muscle is the most active in the human body?",
+    quizAnswer: "The eye muscles, which move more than 100,000 times a day.",
     conditions: ["Muscular dystrophy", "Myopathy", "Tendinitis", "Sprain", "Strain", "Fibromyalgia", "Myasthenia gravis", "Sarcopenia"],
     hotspots: {
       "muscle": { label: "Muscle Fiber", detail: "Contractile unit" },
@@ -263,6 +267,8 @@ export const organs: OrganContentDictionary = {
     funFact: "If you laid all your blood vessels end to end, they would wrap around the Earth twice.",
     tissue: "Endothelium and smooth muscle",
     comparison: "Cardiovascular vs. Lymphatic",
+    quizQuestion: "How long does it take for blood to circulate the entire body?",
+    quizAnswer: "About 60 seconds at rest.",
     conditions: ["Hypertension", "Atherosclerosis", "Aneurysm", "Deep vein thrombosis", "Vasculitis", "Varicose veins", "Peripheral artery disease", "Coronary artery disease"],
     hotspots: {
       "vessel": { label: "Blood Vessel", detail: "Transport conduit" },

@@ -22,6 +22,7 @@ import {
   Sparkles,
   Stethoscope,
   X,
+  FileDown,
 } from "lucide-react";
 import { OrganViewer } from "./OrganViewer";
 import type { OrganId } from "../lib/anatomy-data";
@@ -182,6 +183,13 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
           <button onClick={() => setModal("lesson")}><BookOpen size={17} /> {t.nav.lessons}</button>
           <button><LibraryBig size={17} /> {t.nav.library}</button>
           <button><NotebookPen size={17} /> {t.nav.notes}</button>
+          <button onClick={() => {
+            const a = document.createElement('a');
+            a.href = '/Anat_diagrammm.pdf';
+            a.download = 'Anat_diagrammm.pdf';
+            a.target = '_blank';
+            a.click();
+          }}><FileDown size={17} /> Diagram</button>
         </nav>
         <label className="search-box">
           <Search size={17} />
@@ -258,7 +266,14 @@ export function AnatomyApp({ locale, dictionary }: { locale: LocaleConfig; dicti
           </dl>
           <div className="medical-note" data-reveal><Stethoscope size={16} /><p><b>{t.info.medical}</b>{organ.medical}</p></div>
           <div className="fun-note" data-reveal><Sparkles size={15} /><p><b>{t.info.didYouKnow}</b>{organ.funFact}</p></div>
+          {organ.quizQuestion && (
+            <div className="fun-note quiz-note" data-reveal style={{ marginTop: '8px', background: 'rgba(238, 124, 106, 0.08)' }}>
+              <CircleHelp size={15} color="#ee7c6a" />
+              <p><b>Quick Quiz!</b> {organ.quizQuestion} <br/><span style={{ color: '#ee7c6a' }}>Answer: {organ.quizAnswer}</span></p>
+            </div>
+          )}
           <button className="lesson-button" data-reveal onClick={() => setModal("lesson")}>{t.info.viewLesson} <ArrowRight size={16} /></button>
+          <a href="/Anat_diagrammm.pdf" target="_blank" download className="lesson-button" data-reveal style={{ marginTop: '8px', background: '#253327', color: 'white' }}>Download PDF Diagram <FileDown size={16} /></a>
           <div className="action-grid" data-reveal>
             <button onClick={() => setModal("animation")}><Play size={15} /> {t.info.animate}</button>
             <button onClick={() => { setQuizActive(true); setModal(null); }}><CircleHelp size={15} /> {t.info.quiz}</button>

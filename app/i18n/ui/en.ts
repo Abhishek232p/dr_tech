@@ -9,7 +9,7 @@ export const ui: UiDictionary = {
     ogDescription: "Learn anatomy like an artist through immersive, medically detailed 3D specimens.",
     imageAlt: "An anatomical heart specimen floating above a plinth, beside the dr_tech wordmark",
   },
-  brand: { tagline: "Learn anatomy like an artist", home: "dr_tech home" },
+  brand: { tagline: "Learn anatomy like an artist | Built by Abhishek Jaiswal", home: "dr_tech home" },
   nav: { explore: "Explore", systems: "Systems", lessons: "Lessons", library: "Library", notes: "Notes" },
   search: { placeholder: "Search organs, topics…" },
   profile: { open: "Open learner profile" },
